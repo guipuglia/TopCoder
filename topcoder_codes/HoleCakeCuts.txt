@@ -1,0 +1,73 @@
+PROBLEM STATEMENT
+Little Bonnie has been given a special cake as a reward for her good performance in her Math class.  When viewed from above, the cake is a square, with an empty square hole inside.  Both squares are centered at (0, 0) and their sides are parallel to the x- and y-axes.
+
+
+Bonnie is going to cut the cake using several horizontal and vertical cuts.  These cuts are given in the vector <int>s horizontalCuts and verticalCuts.  The i-th horizontal cut is a line parallel to the x-axis which goes through the point (0, horizontalCuts[i]).  Likewise, the i-th vertical cut is a line parallel to the y-axis which goes through the point (verticalCuts[i], 0).  All cuts have infinite lengths.
+
+
+You are given an int cakeLength, half of the side length of the outer square, and an int holeLength, half of the side length of the inner square hole. Note that both of these numbers are halves of the sides of the corresponding squares. Return the number of pieces of cake that will exist after all the cuts are performed.
+
+DEFINITION
+Class:HoleCakeCuts
+Method:cutTheCake
+Parameters:int, int, vector <int>, vector <int>
+Returns:int
+Method signature:int cutTheCake(int cakeLength, int holeLength, vector <int> horizontalCuts, vector <int> verticalCuts)
+
+
+NOTES
+-A piece is a region of the cake with non-zero area.
+
+
+CONSTRAINTS
+-cakeLength will be between 2 and 100, inclusive.
+-holeLength will be between 1 and (cakeLength-1), inclusive.
+-horizontalCuts and verticalCuts will each contain between 0 and 50 elements, inclusive.
+-Each element of horizontalCuts and verticalCuts will be between (-cakeLength+1) and (cakeLength-1), inclusive.
+-Elements of horizontalCuts will be distinct.
+-Elements of verticalCuts will be distinct.
+
+
+EXAMPLES
+
+0)
+5
+3
+{1, -4}
+{1}
+
+Returns: 6
+
+The cake has the side length of 10, and the side of the hole is 6. Two horizontal and one vertical cuts divide the cake into 6 pieces. Those pieces are colored differently in the following picture:
+
+
+
+1)
+10
+5
+{}
+{-2, 2}
+
+Returns: 4
+
+There may be no horizontal cuts.
+
+2)
+10
+5
+{1}
+{-5, 5}
+
+Returns: 6
+
+
+
+3)
+50
+5
+{40, -40}
+{20, 0, -20}
+
+Returns: 12
+
+

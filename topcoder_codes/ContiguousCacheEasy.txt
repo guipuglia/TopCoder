@@ -1,0 +1,63 @@
+PROBLEM STATEMENT
+In order to make their newest microcontroller as cheap as possible, the ACME
+Widget Company designed it with a very simple cache. The processor is
+connected to a slow memory system that contains n bytes, numbered
+0 to n - 1. The cache holds a copy of k of these bytes at a time, for fast access. It has a base address (referred to as base below), and it holds a copy of the bytes numbered base, base+1, ..., base+k-1. When a program
+reads a byte, the cache controller executes the following algorithm:
+
+Find a new range of k bytes which contains the requested byte, such that the difference between the old and new base addresses is minimized. Note that if the
+requested byte was already in the cache, then the base address will not change.
+Update the cache to the new range by reading from the memory system any
+bytes that are in the new range but not the old range, and discarding any
+bytes that were in the old range but not the new range.
+Return the requested byte to the program.
+
+
+To analyze the performance of a program, you wish to know how many bytes
+are read from the memory system. The numbers of the bytes that the program
+reads are given in addresses, in the order that they are read. When the
+program starts, the base address is 0.
+
+DEFINITION
+Class:ContiguousCacheEasy
+Method:bytesRead
+Parameters:int, int, vector <int>
+Returns:int
+Method signature:int bytesRead(int n, int k, vector <int> addresses)
+
+
+CONSTRAINTS
+-n will be between 1 and 1,000,000, inclusive.
+-k will be between 1 and n, inclusive.
+-addresses will contain between 1 and 50 elements, inclusive.
+-Each element of addresses will be between 0 and n-1, inclusive.
+
+
+EXAMPLES
+
+0)
+100
+5
+{6, 0, 3, 20, 22, 16}
+
+Returns: 13
+
+When the program starts, the cache holds 0-4 (all ranges are inclusive). Accessing 6 updates the range to hold 2-6, reading two bytes. Accessing 0 resets the range to 0-4, reading another two bytes. Accessing 3 has no effect, since it is already cached. Accessing 20 and then 22 causes another seven bytes to be read, and the cache to hold 18-22. Finally, accessing 16 updates the cache to hold 16-20 (the closest range to 18-22 containing 16), for another two bytes.
+
+1)
+100
+1
+{0, 4, 6, 6, 4, 10}
+
+Returns: 4
+
+When the cache only holds one byte, every access causes a read, except where the cache already held the correct byte.
+
+2)
+1000
+999
+{0, 4, 123, 987, 999, 500, 0}
+
+Returns: 2
+
+In this case, all but one byte is cached.
